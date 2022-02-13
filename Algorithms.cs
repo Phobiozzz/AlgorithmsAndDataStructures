@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AlgorithmsAnsDataStructures
 {
-    internal class Algorithms
+    public class Algorithms
     {
         public void BubbleSort(int[] _array)
         {

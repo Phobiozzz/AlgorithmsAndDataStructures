@@ -16,7 +16,14 @@ namespace AlgorithmsAnsDataStructures
             Console.WriteLine("Array before sorting: " + algorithms.PrintArray(testArray));
             //algorithms.BubbleSort(testArray);
             algorithms.InsertionSort(testArray);
+
+           
             Console.WriteLine("Array after sorting: " + algorithms.PrintArray(testArray));
+            LinkedList<int> list = new LinkedList<int>();
+            list.Add(11);
+            list.Add(8);
+            list.Add(9);
+            list.Print();
             Console.ReadLine();
         }
     }
