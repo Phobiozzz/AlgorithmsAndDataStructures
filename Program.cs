@@ -14,7 +14,8 @@ namespace AlgorithmsAnsDataStructures
 
             Algorithms algorithms = new Algorithms();
             Console.WriteLine("Array before sorting: " + algorithms.PrintArray(testArray));
-            algorithms.BubbleSort(testArray);
+            //algorithms.BubbleSort(testArray);
+            algorithms.InsertionSort(testArray);
             Console.WriteLine("Array after sorting: " + algorithms.PrintArray(testArray));
             Console.ReadLine();
         }

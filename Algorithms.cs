@@ -23,6 +23,21 @@ namespace AlgorithmsAnsDataStructures
             }
         }
 
+        public void InsertionSort(int[] _array)
+        {
+            //Works on O(n2)
+            for (int i = 0; i <= _array.Length - 1; i++)
+            {
+                for (int j = i + 1; j < _array.Length; j++)
+                {
+                    if (_array[i] >= _array[j])
+                    { 
+                        Swap(_array, i, j);
+                    }
+                }
+            }
+        }
+
 
 
 
