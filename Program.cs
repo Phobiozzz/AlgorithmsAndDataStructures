@@ -24,6 +24,11 @@ namespace AlgorithmsAnsDataStructures
             list.Add(8);
             list.Add(9);
             list.Print();
+            Console.WriteLine(list.Contains(11));
+            Console.WriteLine(list.Contains(40));
+            list.Remove(9);
+            
+            list.Print();
             Console.ReadLine();
         }
     }

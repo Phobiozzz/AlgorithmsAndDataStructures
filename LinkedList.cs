@@ -28,6 +28,57 @@ namespace AlgorithmsAnsDataStructures
             count++;
         }
 
+        public void Remove(T _data)
+        {
+            Node<T> current = head;
+            Node<T> previous = null;
+            while (current != null)
+            {
+                if (current.data.Equals(_data))
+                {
+                    if (previous == null)
+                    {
+                        head = current.nextNode;
+                        if (head == null)
+                        {
+                            tail = null;
+                        }
+                    }
+                    else
+                    {
+                        previous.nextNode = current.nextNode;
+                        if (current.nextNode == null)
+                        {
+                            tail = previous;
+                        }
+                    }
+                    count--;
+                }
+                previous = current;
+                current = current.nextNode;
+            }
+        }
+
+        public int Count()
+        { 
+            return count;
+        }
+
+        public bool Contains(T _data)
+        {
+            Node<T> node = head;
+            while (node != null)
+            {
+                if (node.data.Equals(_data))
+                { 
+                    return true;
+                }
+                node = node.nextNode;
+            }
+            return false;
+        }
+
+      
         public void Print()
         {
             Node<T> currentNode = head;
