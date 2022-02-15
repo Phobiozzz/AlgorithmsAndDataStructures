@@ -38,6 +38,31 @@ namespace AlgorithmsAnsDataStructures
             }
         }
 
+        public void MergeSort(int[] _array)
+        {
+            //Works on O(nlogn)
+            if (_array.Length < 2)
+            {
+                return;
+            }
+            //Split array twice
+            int[] leftSide = new int[_array.Length/2];
+            int[] rightSide = new int[_array.Length - leftSide.Length];
+
+            for (int i = 0; i < leftSide.Length; i++)
+            { 
+                leftSide[i]  = _array[i];
+            }
+
+            for (int j = leftSide.Length; j < _array.Length; j++)
+            { 
+                rightSide[j- leftSide.Length] = _array[j];
+            }
+            MergeSort(leftSide);
+            MergeSort(rightSide);
+            Merge(_array, leftSide, rightSide);
+        }
+
 
 
 
@@ -56,6 +81,40 @@ namespace AlgorithmsAnsDataStructures
                 arr += _array[i] + ", ";
             }
             return arr;
+        }
+
+        private void Merge(int[] _targetArray, int[] _firstArray, int[] _secondArray)
+        {
+            int targetArrayCurrent = 0;
+            int firstArrayCurrent = 0;
+            int secondArrayCurrent = 0;
+
+            while (firstArrayCurrent < _firstArray.Length && secondArrayCurrent < _secondArray.Length)
+            {
+                if (_firstArray[firstArrayCurrent] <= _secondArray[secondArrayCurrent])
+                {
+                    _targetArray[targetArrayCurrent] = _firstArray[firstArrayCurrent];
+                    firstArrayCurrent++;
+                }
+                else
+                { 
+                    _targetArray[targetArrayCurrent] = _secondArray[secondArrayCurrent];
+                    secondArrayCurrent++;
+                }
+                targetArrayCurrent++;
+            }
+            while (firstArrayCurrent < _firstArray.Length)
+            {
+                _targetArray[targetArrayCurrent] = firstArrayCurrent;
+                firstArrayCurrent++;
+                targetArrayCurrent++;
+            }
+            while (secondArrayCurrent < _secondArray.Length)
+            {
+                _targetArray[targetArrayCurrent] = _secondArray[secondArrayCurrent];
+                secondArrayCurrent++;
+                targetArrayCurrent++;
+            }
         }
     }
 }
