@@ -40,27 +40,34 @@ namespace AlgorithmsAnsDataStructures
 
         public void MergeSort(int[] _array)
         {
-            //Works on O(nlogn)
+            // Works on O(nlogn)
+            //Exit condition
             if (_array.Length < 2)
             {
                 return;
             }
-            //Split array twice
-            int[] leftSide = new int[_array.Length/2];
-            int[] rightSide = new int[_array.Length - leftSide.Length];
 
-            for (int i = 0; i < leftSide.Length; i++)
-            { 
-                leftSide[i]  = _array[i];
-            }
+            //Spliting array into two parts
+            int leftPartLength = _array.Length / 2;
+            int rightPartLength = _array.Length - leftPartLength;
+            int[] leftPart = new int[leftPartLength];
+            int[] rightPart = new int[rightPartLength];
+            //Fill both parts
 
-            for (int j = leftSide.Length; j < _array.Length; j++)
-            { 
-                rightSide[j- leftSide.Length] = _array[j];
+            for (int i = 0; i < leftPartLength; i++)
+            {
+                leftPart[i] = _array[i];
             }
-            MergeSort(leftSide);
-            MergeSort(rightSide);
-            Merge(_array, leftSide, rightSide);
+            for (int i = 0; i < rightPart.Length; i++)
+            {
+                rightPart[i] = _array[(i + leftPartLength)];
+            }
+            //Recursive split of left and right parts
+            MergeSort(leftPart);
+            MergeSort(rightPart);
+            //Merge parts
+            Merge(_array, leftPart, rightPart);
+
         }
 
 
@@ -85,36 +92,37 @@ namespace AlgorithmsAnsDataStructures
 
         private void Merge(int[] _targetArray, int[] _firstArray, int[] _secondArray)
         {
-            int targetArrayCurrent = 0;
-            int firstArrayCurrent = 0;
-            int secondArrayCurrent = 0;
-
-            while (firstArrayCurrent < _firstArray.Length && secondArrayCurrent < _secondArray.Length)
+            int firstArrayMin = 0;
+            int secondArrayMin = 0;
+            int targetArrayMin = 0;
+            while (firstArrayMin < _firstArray.Length && secondArrayMin < _secondArray.Length)
             {
-                if (_firstArray[firstArrayCurrent] <= _secondArray[secondArrayCurrent])
+                if (_firstArray[firstArrayMin] >= _secondArray[secondArrayMin])
                 {
-                    _targetArray[targetArrayCurrent] = _firstArray[firstArrayCurrent];
-                    firstArrayCurrent++;
+                    _targetArray[targetArrayMin] = _secondArray[secondArrayMin];
+                    secondArrayMin++;
                 }
                 else
-                { 
-                    _targetArray[targetArrayCurrent] = _secondArray[secondArrayCurrent];
-                    secondArrayCurrent++;
+                {
+                    _targetArray[targetArrayMin] = _firstArray[firstArrayMin];
+                    firstArrayMin++;
                 }
-                targetArrayCurrent++;
+                targetArrayMin++;
             }
-            while (firstArrayCurrent < _firstArray.Length)
+            
+            while (firstArrayMin < _firstArray.Length)
             {
-                _targetArray[targetArrayCurrent] = firstArrayCurrent;
-                firstArrayCurrent++;
-                targetArrayCurrent++;
+                _targetArray[targetArrayMin] = _firstArray[firstArrayMin];
+                targetArrayMin++;
+                firstArrayMin++;
             }
-            while (secondArrayCurrent < _secondArray.Length)
+            while (secondArrayMin < _secondArray.Length)
             {
-                _targetArray[targetArrayCurrent] = _secondArray[secondArrayCurrent];
-                secondArrayCurrent++;
-                targetArrayCurrent++;
+                _targetArray[targetArrayMin] = _secondArray[secondArrayMin];
+                targetArrayMin++;
+                secondArrayMin++;
             }
+
         }
     }
 }
