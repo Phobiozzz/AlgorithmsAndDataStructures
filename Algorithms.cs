@@ -70,7 +70,17 @@ namespace AlgorithmsAnsDataStructures
 
         }
 
-
+        public void QuickSort(int[] _array, int _from, int _to)
+        {
+            //Exit Condition
+            if (_from >= _to)
+            {
+                return;
+            }
+            int point = Partition(_array, _from, _to);
+            QuickSort(_array, _from, point - 1);
+            QuickSort(_array, point + 1, _to);
+        }
 
 
         private void Swap(int[] _array, int _firstIndex, int _secondIndex)
@@ -123,6 +133,21 @@ namespace AlgorithmsAnsDataStructures
                 secondArrayMin++;
             }
 
+        }
+
+        private int Partition(int[] _array, int _from, int _to)
+        {
+            int pivot = _from;
+            for (int currentItem = _from; currentItem < _to; currentItem++)
+            {
+                if (_array[currentItem] <= _array[_to])
+                {
+                    Swap(_array, currentItem, pivot);
+                    pivot++;
+                }
+            }
+            Swap(_array, pivot, _to);
+            return pivot;
         }
     }
 }

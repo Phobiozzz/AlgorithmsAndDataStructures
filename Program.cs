@@ -16,8 +16,8 @@ namespace AlgorithmsAnsDataStructures
             Console.WriteLine("Array before sorting: " + algorithms.PrintArray(testArray));
             //algorithms.BubbleSort(testArray);
             //algorithms.InsertionSort(testArray);
-            algorithms.MergeSort(testArray);
-           
+            //algorithms.MergeSort(testArray);
+            algorithms.QuickSort(testArray, 0, testArray.Length - 1);
             Console.WriteLine("Array after sorting: " + algorithms.PrintArray(testArray));
             LinkedList<int> list = new LinkedList<int>();
             list.Add(11);
