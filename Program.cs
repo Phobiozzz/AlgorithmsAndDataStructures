@@ -29,6 +29,31 @@ namespace AlgorithmsAnsDataStructures
             list.Remove(9);
             
             list.Print();
+
+            Stack<int> stack = new Stack<int>();
+            stack.Push(123);
+            stack.Push(321);
+            stack.Push(20);
+            stack.Print();
+            int temp = stack.Pop();
+            temp = stack.Peek();
+            Console.WriteLine(stack.Count());
+            int[] array = stack.ToArray();
+
+            for (int i = 0; i < array.Length; i++)
+            { 
+                Console.WriteLine(array[i]);
+            }
+            stack.Print();
+
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(42);
+            queue.Enqueue(43);
+            queue.Enqueue(44);
+            queue.Print();
+            queue.Dequeue();
+            queue.Dequeue();
+            queue.Print();
             Console.ReadLine();
         }
     }
